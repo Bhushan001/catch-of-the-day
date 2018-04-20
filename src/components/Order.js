@@ -23,6 +23,7 @@ class Order extends Component {
 
   render() {
     const orderIds = Object.keys(this.props.order);
+    // reduce allows us to use map & filter
     const total = orderIds.reduce((prevTotal, key) => {
       const fish = this.props.fishes[key];
       const count = this.props.order[key];

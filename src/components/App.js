@@ -7,8 +7,10 @@ import sampleFishes from "./../sample-fishes";
 import base from "./../base";
 
 class App extends Component {
+
   constructor() {
     super();
+    // Binding all methods to component scope
     this.addFish = this.addFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
@@ -21,7 +23,9 @@ class App extends Component {
     };
   }
 
+  // Here we are syncing firebase data with our app & also checking if there is already an order inside localstorage
   componentWillMount() {
+    // Sync with firebase
     this.ref = base.syncState(`${this.props.params.storeId}/fishes`, {
       context: this,
       state: "fishes"
@@ -38,10 +42,12 @@ class App extends Component {
   }
 
   componentWillUnmount() {
+    // Removing firebase binding when component is unmounted
     base.removeBinding(this.ref);
   }
 
   componentWillUpdate(nextProps, nextState) {
+    // We are setting order state in localstorage every time component is updating the state
     localStorage.setItem(
       `order-${this.props.params.storeId}`,
       JSON.stringify(nextState.order)
@@ -58,6 +64,7 @@ class App extends Component {
     this.setState({ fishes });
   }
 
+  // Updating the fish from inventory component
   updateFish(key,updatedFish){
     const fishes={...this.state.fishes};
     fishes[key]=updatedFish;
@@ -66,6 +73,7 @@ class App extends Component {
     });
   }
 
+  // removing fish from inventory
   removeFish(key){
     const fishes={...this.state.fishes};
     fishes[key]=null;
@@ -74,6 +82,7 @@ class App extends Component {
     });
   }
 
+  // removing fish from order
   removeFromOrder(key){
     const order={...this.state.order};
     delete order[key];
@@ -83,6 +92,7 @@ class App extends Component {
     console.log(order);
   }
 
+  // Loading sample fishes from local js file
   loadSamples() {
     this.setState({ fishes: sampleFishes });
   }
@@ -127,6 +137,7 @@ class App extends Component {
   }
 }
 
+// Validating Props
 App.propTypes={
   params:React.PropTypes.object.isRequired
 }

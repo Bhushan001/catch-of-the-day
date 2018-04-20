@@ -5,7 +5,10 @@ class AddFishForm extends Component {
     super();
     this.createFish = this.createFish.bind(this);
   }
+
+
   createFish(event) {
+    // restricting refresh of console of the browser
     event.preventDefault();
     const fish = {
       name: this.name.value,

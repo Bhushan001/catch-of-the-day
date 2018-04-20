@@ -7,6 +7,7 @@ import App from "./components/App";
 import NotFound from "./components/NotFound";
 
 const Root = () => {
+  // React Router Conf
   return (
     <BrowserRouter>
       <div>
@@ -18,4 +19,6 @@ const Root = () => {
   );
 };
 
+
+// Redering Root component in place of HTML element with Id `main`
 render(<Root />, document.getElementById("main"));

@@ -9,7 +9,7 @@ class Inventory extends Component {
   handleChange(e, key) {
     const fish = this.props.fishes[key];
     const updatedFish = {
-      ...fish,
+      ...fish, // spread operator
       [e.target.name]: e.target.value
     };
     this.props.updateFish(key,updatedFish);
