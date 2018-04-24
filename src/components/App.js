@@ -5,7 +5,6 @@ import Invetory from "./Inventory";
 import Fish from "./Fish";
 import sampleFishes from "./../sample-fishes";
 import base from "./../base";
-
 class App extends Component {
 
   constructor() {
